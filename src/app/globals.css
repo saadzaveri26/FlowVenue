@@ -1,26 +1,124 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@plugin "@tailwindcss/container-queries";
+
+@theme {
+  --color-on-background: #d7e3fc;
+  --color-secondary-container: #284386;
+  --color-error: #ffb4ab;
+  --color-on-secondary-container: #9ab3fd;
+  --color-on-secondary-fixed: #001849;
+  --color-secondary-fixed: #dae1ff;
+  --color-on-primary-fixed: #001849;
+  --color-surface: #071325;
+  --color-outline: #8c90a1;
+  --color-outline-variant: #424656;
+  --color-surface-container-highest: #2a3548;
+  --color-surface-bright: #2e394d;
+  --color-on-secondary-fixed-variant: #284386;
+  --color-surface-tint: #b3c5ff;
+  --color-tertiary-container: #cc4204;
+  --color-error-container: #93000a;
+  --color-secondary: #b3c5ff;
+  --color-on-primary-container: #f8f7ff;
+  --color-primary-fixed-dim: #b3c5ff;
+  --color-inverse-surface: #d7e3fc;
+  --color-on-surface: #d7e3fc;
+  --color-on-tertiary-fixed: #390c00;
+  --color-surface-container-low: #101c2e;
+  --color-surface-variant: #2a3548;
+  --color-surface-container-high: #1f2a3d;
+  --color-on-tertiary: #5d1900;
+  --color-primary: #b3c5ff;
+  --color-on-secondary: #0a2c6e;
+  --color-primary-fixed: #dae1ff;
+  --color-on-primary-fixed-variant: #003fa4;
+  --color-surface-dim: #071325;
+  --color-on-error-container: #ffdad6;
+  --color-primary-container: #0066ff;
+  --color-tertiary-fixed-dim: #ffb59d;
+  --color-background: #071325;
+  --color-tertiary: #ffb59d;
+  --color-inverse-primary: #0054d6;
+  --color-surface-container: #142032;
+  --color-on-tertiary-fixed-variant: #832600;
+  --color-on-surface-variant: #c2c6d8;
+  --color-inverse-on-surface: #253144;
+  --color-surface-container-lowest: #030e20;
+  --color-secondary-fixed-dim: #b3c5ff;
+  --color-on-error: #690005;
+  --color-tertiary-fixed: #ffdbd0;
+  --color-on-tertiary-container: #fff6f4;
+  --color-on-primary: #002b75;
+
+  --font-headline: "Space Grotesk", sans-serif;
+  --font-body: "Manrope", sans-serif;
+  --font-label: "Manrope", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    font-family: var(--font-body);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+.filled-icon {
+  font-variation-settings: 'FILL' 1;
+}
+
+/* Custom Scrollbar for chat */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-outline-variant);
+    border-radius: 10px;
+}
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Animations */
+.glass-panel {
+    background: rgba(7, 19, 37, 0.7);
+    backdrop-filter: blur(20px);
+}
+.message-gradient {
+    background: linear-gradient(135deg, #0066ff 0%, #b3c5ff 100%);
+}
+
+.bg-map-texture {
+    background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+    background-size: 24px 24px;
+}
+.pulse-glow {
+    box-shadow: 0 0 0 0 rgba(0, 102, 255, 0.7);
+    animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 102, 255, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(0, 102, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 102, 255, 0); }
+}
+
+.red-alert-pulse {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    animation: pulse-red 2s infinite;
+}
+@keyframes pulse-red {
+    0% { box-shadow: 0 0 0 0 rgba(147, 0, 10, 0.4); border-color: #93000a; }
+    50% { box-shadow: 0 0 0 10px rgba(147, 0, 10, 0); border-color: #ffb4ab; }
+    100% { box-shadow: 0 0 0 0 rgba(147, 0, 10, 0); border-color: #93000a; }
 }
